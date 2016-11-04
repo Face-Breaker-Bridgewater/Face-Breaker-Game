@@ -22,6 +22,7 @@ public class ScoreMainClass extends Application {
 		hs.addScore("Sean", 200);
 		*/
 		//System.out.println(hs.getHighScoreString());
+		//
 
 		launch(args);
 	}
@@ -32,7 +33,10 @@ public class ScoreMainClass extends Application {
 		
 		HighScore hs = new HighScore();
 		hs.addScore("jarrett", 900);
-		
+		hs.addScore("John", 2);
+		hs.addScore("Laura", 3);
+		hs.addScore("Hunter", 4);
+		hs.addScore("Sean", 5);		
 		
 		StackPane root = new StackPane();
 		Scene scene = new Scene(root, 500, 300);
