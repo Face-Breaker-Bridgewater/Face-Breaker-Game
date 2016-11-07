@@ -11,8 +11,10 @@ import javafx.stage.Stage;
 
 
 public class PlayGame {
-	public PlayGame() {
+	Stage mainStage;
+	public PlayGame(Stage mainStage) {
 		playGame();
+		this.mainStage = mainStage;
 	}
 
 	public void playGame() {
@@ -28,6 +30,13 @@ public class PlayGame {
 		selectLevel.setTranslateY(-250);
 
 		Button back = new Button("Back");
+		back.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				mainStage.show();
+				stage.close();
+			}
+		});
 		back.setTranslateX(-330);
 		back.setTranslateY(-330);
 		for (int i = 1; i <= 40; i++) {
