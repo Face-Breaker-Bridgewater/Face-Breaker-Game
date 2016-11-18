@@ -1,0 +1,44 @@
+.root {
+	-fx-background-color: #AC5757;
+	-fx-alignment: CENTER;
+}
+.button {
+	-fx-background-color: #F2F2F2;
+	-fx-font: 20px "Arial";
+}
+.button:hover {
+	-fx-background-color: #A9A9A9;
+}
+.title {
+	-fx-alignment: TOP_CENTER;
+	-fx-text-fill: black;
+	-fx-font: 60px "Copperplate";
+	-fx-margin: 1000px;
+}
+
+.buttons {
+	-fx-alignment: CENTER;
+}
+
+.hbox {
+	-fx-alignment: BOTTOM_CENTER;
+	}
+
+.helpTitle {
+	-fx-alignment: TOP_CENTER;
+	-fx-text-fill: black;
+	-fx-font: 45px "Copperplate";
+	-fx-margin: 100px;
+}
+.helpText {
+	-fx-alignment: CENTER;
+	-fx-text-fill: black;
+	-fx-font: 20px "Arial";
+}	
+.vbox {
+	-fx-alignment: CENTER;
+	-fx-font: 20px "Arial";
+}
+	
+	
+	
