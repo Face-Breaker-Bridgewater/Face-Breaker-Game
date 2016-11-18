@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.scene.layout.Pane;
@@ -13,7 +14,8 @@ public class ExamplePuzzles {
 		randomGenerator = new Random(randomGeneratorSeed.nextInt());
 	}
 	
-	public void level(int i){
+	public ArrayBrick level(int i) throws NullPointerException, MatrixOutOfBoundsException{
+		ArrayBrick bricks = null;
 		switch (i){
 			case 1: String level1= "x0x0x0x0x0x0x0x"
 					             + "0x0x0x0x0x0x0x0"
@@ -23,8 +25,8 @@ public class ExamplePuzzles {
 								 + "0x0x0x0x0x0x0x0"
 								 + "x0x0x0x0x0x0x0x"
 								 + "0x0x0x0x0x0x0x0";
-					puzzleMaker.makePuzzle(Color.YELLOWGREEN, level1);
-					break;
+					return puzzleMaker.makePuzzle(Color.YELLOWGREEN, level1);
+					
 			case 2: String level2= "x0x0x0x0x0x0x0x"
 								  +"x0x0x0x0x0x0x0x"
 								  +"x0x0x0x0x0x0x0x"
@@ -33,8 +35,8 @@ public class ExamplePuzzles {
 								  +"x0x0x0x0x0x0x0x"
 								  +"x0x0x0x0x0x0x0x"
 								  +"x0x0x0x0x0x0x0x"; 
-				puzzleMaker.makePuzzle(Color.ORANGE, level2);
-					break;
+				return puzzleMaker.makePuzzle(Color.ORANGE, level2);
+					
 			case 3: String level3= "000000xxx000000"
 								  +"0000xxxxxxx0000"
 								  +"00xxxxxxxxxxx00"
@@ -50,8 +52,7 @@ public class ExamplePuzzles {
 								  +"000000xxx000000"
 								  +"000000000000000"
 								  +"000000000000000";
-				puzzleMaker.makePuzzle(Color.CRIMSON, level3);
-					break;
+				return puzzleMaker.makePuzzle(Color.CRIMSON, level3);
 			case 4: String level4= "xxxxxxxxxxxxxxx"
 					  			  +"00000xxxxx00000"
 					              +"xxxxxxxxxxxxxxx"
@@ -67,8 +68,7 @@ public class ExamplePuzzles {
 					              +"xxxxxxxxxxxxxxx"
 					              +"000000000000000"
 					              +"000000000000000"; 
-				puzzleMaker.makePuzzle(Color.LIGHTBLUE,level4);
-					break;
+				return puzzleMaker.makePuzzle(Color.LIGHTBLUE,level4);
 			case 5: String level5= "000000xxx000000"
 					  			  +"000000xxx000000"
 					  			  +"000000xxx000000"
@@ -85,7 +85,6 @@ public class ExamplePuzzles {
 					  			  +"000000xxx000000"
 					  			  +"000000xxx000000";
 				puzzleMaker.makePuzzle(Color.DARKGRAY, level5);
-				break;
 			case 6: String level6= "xxxxxxxxxxxxxxx"
 		  			  			  +"xx0000xxx0000xx"
 		  			  			  +"x0x000xxx000x0x"
@@ -101,8 +100,7 @@ public class ExamplePuzzles {
 		  			     		  +"x0x000xxx000x0x"
 		  			     		  +"xx0000xxx0000xx"
 		  			     		  +"xxxxxxxxxxxxxxx";
-				puzzleMaker.makePuzzle(Color.BLUEVIOLET,level6);
-				break;
+				return puzzleMaker.makePuzzle(Color.BLUEVIOLET,level6);
 			case 7: String level7= "xxxxxxxxxxxxxxx"
 		  			  			  +"0x00000000000x0"
 		  			  			  +"00x000000000x00"
@@ -118,8 +116,7 @@ public class ExamplePuzzles {
 		  			  			  +"00x000000000x00"
 		  			  			  +"0x00000000000x0"
 		  			  			  +"xxxxxxxxxxxxxxx";
-				puzzleMaker.makePuzzle(Color.BROWN, level7);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level7);
 			case 8: String level8= "000000000000000"
 		  			  			  +"000000000000000"
 		  			  			  +"00000xxx0000000"
@@ -135,8 +132,7 @@ public class ExamplePuzzles {
 		  			  			  +"000000000000000"
 		  			  			  +"000000000000000"
 		  			  			  +"000000000000000";
-				puzzleMaker.makePuzzle(Color.BROWN, level8);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level8);
 			case 9: String level9= "000000000000000"
 		  			  			  +"000000000000000"
 		  			  			  +"000000000000000"
@@ -152,8 +148,7 @@ public class ExamplePuzzles {
 		  			  			  +"000000000000000"
 		  			  			  +"000000000000000"
 		  			  			  +"000000000000000";
-				puzzleMaker.makePuzzle(Color.BROWN, level9);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level9);
 			case 10: String level10= "000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
@@ -169,8 +164,7 @@ public class ExamplePuzzles {
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000";
-				puzzleMaker.makePuzzle(Color.BROWN, level10);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level10);
 			case 11: String level11= "000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
@@ -186,8 +180,7 @@ public class ExamplePuzzles {
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000";
-				puzzleMaker.makePuzzle(Color.BROWN, level11);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level11);
 			case 12: String level12= "000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
@@ -203,8 +196,8 @@ public class ExamplePuzzles {
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000";
-				puzzleMaker.makePuzzle(Color.BROWN, level12);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level12);
+				
 			case 13: String level13= "000000000000000"
 		  			  			   +"000000000000000"
 		  			  			   +"000000000000000"
@@ -220,8 +213,8 @@ public class ExamplePuzzles {
 		  			  			   +"000000000000000"
 		  			  			   +"000000000000000"
 		  			  			   +"000000000000000";
-				puzzleMaker.makePuzzle(Color.BROWN, level13);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level13);
+				
 			case 14: String level14= "000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
@@ -237,8 +230,8 @@ public class ExamplePuzzles {
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000";
-				puzzleMaker.makePuzzle(Color.BROWN, level14);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level14);
+				
 			case 15: String level15= "000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
@@ -254,8 +247,8 @@ public class ExamplePuzzles {
 		  			  				+"000000000000000"
 		  			  				+"000000000000000"
 		  			  				+"000000000000000";
-				puzzleMaker.makePuzzle(Color.BROWN, level15);
-				break;
+				return puzzleMaker.makePuzzle(Color.BROWN, level15);
+				
 			case 16: int[] randomPuzzle16 = new int[80];
 				for (int x=0; x<randomPuzzle16.length; x++){
 					randomPuzzle16[x] = randomGenerator.nextInt(150);
@@ -320,5 +313,6 @@ public class ExamplePuzzles {
 			default: System.out.println();
 					break;
 		}
+		return bricks;
 	}
 }
