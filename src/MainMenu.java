@@ -1,7 +1,6 @@
 import java.io.File;
 
 import javax.print.DocFlavor.URL;
-import javax.sound.sampled.Clip;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -33,7 +32,7 @@ public class MainMenu extends Application {
 		//java.net.URL bitQuest = getClass().getResource("BitQuest.wav");
 		//final AudioClip clip = new AudioClip(bitQuest.toString());
 		Music playMusic = new Music();
-		Clip playBGMusic = playMusic.playYaverclap();
+		AudioClip playBGMusic = playMusic.playBitQuest();
 		
 		mainStage.setTitle("FaceBreaker Game!");
 		Label title = new Label("FACE BREAKER GAME");
@@ -63,20 +62,14 @@ public class MainMenu extends Application {
 		
 		playGame.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				PlayGame newGame = new PlayGame(mainStage);
+				PlayGame newGame = new PlayGame();
 				mainStage.close();
 			}
 		});
 	   
 		highScore.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				ScoreMainClass highscores = new ScoreMainClass(mainStage);
-				mainStage.close();
-			}
-		});
-		help.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent e) {
-				Help help = new Help(mainStage);
+				ScoreMainClass highscores = new ScoreMainClass();
 				mainStage.close();
 			}
 		});
@@ -84,11 +77,12 @@ public class MainMenu extends Application {
 		    public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 		         if (group.getSelectedToggle() != null) {
 		        	 if(soundOn.isSelected()) {
-		        		playBGMusic.start();
-		        		playBGMusic.loop(Clip.LOOP_CONTINUOUSLY);
+		        		playBGMusic.play(1.0);
+		        		boolean soundSetting = true;
 		        	 }
 		        	 if(soundOff.isSelected()) {
-		        		playBGMusic.stop();
+		        		 playBGMusic.stop();
+		        		 boolean soundSetting = false;
 		        	 }
 		         }
 		     }

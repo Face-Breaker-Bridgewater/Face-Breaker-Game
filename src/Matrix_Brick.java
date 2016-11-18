@@ -1,7 +1,7 @@
 
-public class Matrix_Brick {
-
-	Brick [] elements;
+public class Matrix_Brick <T> {
+	
+	Object [] elements;
 	private int capacity;
 	private int numElms;
 	public int offSet;
@@ -9,20 +9,22 @@ public class Matrix_Brick {
 	public Matrix_Brick(int capacity, int offSet) {
 		this.capacity = capacity;
 		this.offSet = offSet;
-		elements = new Brick [capacity];
+		elements = new Object [capacity];
 		this.numElms = 0;
+		
 	}
 	public void ensureCapacity(int minCapacity){
 		if (minCapacity > capacity){
 			capacity = minCapacity;
-			Brick[] newArray = new Brick[capacity];
+			Object[] newArray = new Object[capacity];
 			for (int i=0; i<numElms; i++){
 				newArray[i] = elements[i];
 			}
 			elements = newArray;
 		}
+		
 	}
-	public boolean  add(Brick elm, int k )throws NullPointerException,MatrixOutOfBoundsException {
+	public boolean  add(T elm, int k )throws NullPointerException,MatrixOutOfBoundsException {
 		if(elm ==null)
 			throw new NullPointerException();
 		if (k<0)
@@ -34,18 +36,5 @@ public class Matrix_Brick {
 		numElms++;
 		return false;
 		
-	}
-	public Brick elementAt(int k)throws MatrixOutOfBoundsException{
-		if (k>=numElms||k<0)
-			throw new MatrixOutOfBoundsException("the matrix element is out of bounds");
-		Brick elm=  elements[k];
-		return elm;
-	}
-	public Brick removeAt(int k) throws MatrixOutOfBoundsException{
-		if (k>=numElms||k<0)
-			throw new MatrixOutOfBoundsException("the matrix element is out of bounds");
-		Brick elm=  elements[k];
-		elements[k]=null;
-		return elm;
 	}
 }

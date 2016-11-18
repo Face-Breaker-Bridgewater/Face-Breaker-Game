@@ -1,8 +1,5 @@
-import java.util.ArrayList;
-
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class Puzzle_Maker {
 
@@ -17,19 +14,16 @@ public class Puzzle_Maker {
 		this.offSet = offSet;
 	}
 
-	public ArrayBrick makePuzzle(Color color, String input) throws NullPointerException, MatrixOutOfBoundsException {
-		ArrayBrick bricks=new ArrayBrick ();
+	public void makePuzzle(Color color, String input) {
+
 		for (int i = 0; i < input.length(); i++) {
 			if (input.charAt(i) == 'x') {
-			
 				brick = new Brick(color, brickXPos(i), brickYPos(i), offSet, offSet / 2);
-				bricks.add(brick);
 				// brick = new
 				// Brick(color,brickXPos(indexes[i]-1),brickYPos(indexes[i]-1),offSet,offSet/2);
 				brick.addBlock(canvas);
 			}
 		}
-		return bricks;
 	}
 	public void makePuzzle(Color color, int[] input) {
 

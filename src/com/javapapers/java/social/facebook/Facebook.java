@@ -50,8 +50,8 @@ public class FBGraph {
 			fbProfile.put("first_name", json.getString("first_name"));
 			if (json.has("email"))
 				fbProfile.put("email", json.getString("email"));
-			if (json.has("picture"))
-				fbProfile.put("picture", json.getString("picture"));
+			if (json.has("proPic"))
+				fbProfile.put("picture", json.getObject("picture"));
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -60,25 +60,28 @@ public class FBGraph {
 		return fbProfile;
 	}
 }
-	private void importFbProfilePhoto() {
-        if (AccessToken.getCurrentAccessToken() != null) 
-        	{
-            	GraphRequest request = GraphRequest.newMeRequest (AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() 
-            	{        	
-            		@Override
-            		public void onCompleted(JSONObject me, GraphResponse response) 
-            		{
-            			if (AccessToken.getCurrentAccessToken() != null) 
-            			{
-            				if (me != null) 
-            				{            
-            					String profileImageUrl = ImageRequest.getProfilePictureUri(me.optString("id"), 500, 500).toString();
-            					Log.i(LOG_TAG, profileImageUrl);
-            				}
-            			}
-            		}
-            });
-            GraphRequest.executeBatchAsync(request);
-        }
-}
 	
+    	    
+   /* private void importFbProfilePhoto() {
+	        if (AccessToken.getCurrentAccessToken() != null) 
+	        	{
+	            	GraphRequest request = GraphRequest.newMeRequest (AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() 
+	            	{        	
+	            		@Override
+	            		public void onCompleted(JSONObject me, GraphResponse response) 
+	            		{
+	            			if (AccessToken.getCurrentAccessToken() != null) 
+	            			{
+	            				if (me != null) 
+	            				{            
+	            					String profileImageUrl = ImageRequest.getProfilePictureUri(me.optString("id"), 500, 500).toString();
+	            					Log.i(LOG_TAG, profileImageUrl);
+	            				}
+	            			}
+	            		}
+	            });
+	            GraphRequest.executeBatchAsync(request);
+	        }
+	    }
+	}
+}*/
