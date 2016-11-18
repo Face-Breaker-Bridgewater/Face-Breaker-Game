@@ -7,38 +7,49 @@ import java.util.*;
 import java.io.*;
 
 public class HighScore {
-	private ArrayList<score> scores;
-
-	private static final String HIGHSCORE_FILE = "scores.txt";
-
-	//Initialising an in and outputStream for working with the file
-	ObjectOutputStream outputStream = null;
-	ObjectInputStream inputStream = null;
-
+	HashMap<String, Integer> scores = new HashMap<>();
+	
 	public HighScore() {
-		scores = new ArrayList<score>();
+		this.scores = scores;
 	}
-	
-	//this function will return an arraylist with the scores in it.
-	public ArrayList<score> getScores(){ 
-		LoadScoreFile();
-		sort();
-		return scores;
-	}
-	
-	//will create a object and allows you to sort the arraylist with scores
-	private void sort(){
-		ScoreComparator comparator = new ScoreComparator();
-		Collections.sort(scores, comparator);
-	}
-	
 	//This is the method you call to add highscores to!
 	public void addScore(String name, int score) {
-		LoadScoreFile();
-		scores.add(new score(name, score));
-        updateScoreFile();
+		scores.put(name, score);
 	}
 	
+	public HashMap<String, Integer> returnScores() {
+		scores.put("Jarrett", 1);
+		scores.put("John", 2);
+		scores.put("Laura", 3);
+		scores.put("Hunter", 4);
+		scores.put("Sean", 5);
+		
+		return scores;
+	}
+
+	/*public void getHighScoreString() {
+		String highScoreString = "";
+		/*int max = 50;
+		
+		int i = 0;
+		int x = scores.size();
+        if (x > max) {
+            x = max;
+        }
+        while (i < x) {
+            highScoreString += (i + 1)  + scores.get(i).get() + "\t\t" + scores.get(i).getScore() + "\n";
+            i++;
+        }
+        
+		//List<Integer> mapKeys = new ArrayList<>(passedMap.keySet());
+	    Collections.sort(mapValues);
+	  //  Collections.sort(mapKeys);
+      //  return highScoreString;
+	}
+*/
+
+
+	/*
 	//load the arraylist that is in the high-score file and put it in the scores arraylist
 	public void LoadScoreFile(){
 		try {
@@ -82,24 +93,8 @@ public class HighScore {
         }
 	}
 	
-	public String getHighScoreString() {
-		String highScoreString = "";
-		int max = 50;
-		
-		ArrayList<score> scores;
-		scores = getScores();
-		
-		int i = 0;
-		int x = scores.size();
-        if (x > max) {
-            x = max;
-        }
-        while (i < x) {
-            highScoreString += (i + 1) + ".\t" + scores.get(i).getName() + "\t\t" + scores.get(i).getScore() + "\n";
-            i++;
-        }
-        return highScoreString;
-	}
+	
+	*/
 }
         
         

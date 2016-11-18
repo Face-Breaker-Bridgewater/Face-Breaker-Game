@@ -4,23 +4,23 @@
  * highscores 
  */
 
-import java.io.Serializable;
-
-public class score implements Serializable{
-	private int score; //global variable that holds the score
-	private String name; //global variable that holds the name values
+public class Score {
 	
-	public int getScore(){  //simple constructor
+	private String name; //global variable that holds the name values
+	private int score; //global variable that holds the score
+
+	public Score(){
+		this.score = score;
+		this.name = name;
+	}	
+	
+	public int getScore(){ 
 		return score;		
 	}
 	
 	public String getName(){
 		return name;
 	}
-	
-	public score(String name, int score){
-		this.score = score;
-		this.name = name;
-	}
 }
+	
 

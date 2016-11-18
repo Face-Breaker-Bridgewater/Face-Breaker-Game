@@ -31,14 +31,14 @@ public class Example_Ball extends Application {
 	int gameSizeX = 750;
 	int gameSizeY = 700;
 	int offSet = 50;
-
+	
 	public void setAtBottomBorder(boolean value) {
 		atBottomBorder = value;
 	}
 
 	public void start(final Stage primaryStage) throws NullPointerException, MatrixOutOfBoundsException {
 
-		Matrix_Brick<Object> gridMatrix = new Matrix_Brick<>(10, offSet);
+		//Matrix_Brick<Object> gridMatrix = new Matrix_Brick<>(10, offSet);
 		Pane canvas = new Pane();
 		ExamplePuzzles levelSelector = new ExamplePuzzles(gameSizeX, offSet, canvas);
 		Scene scene = new Scene(canvas, gameSizeX, gameSizeY);
@@ -52,6 +52,8 @@ public class Example_Ball extends Application {
 		DoubleProperty circleX = new SimpleDoubleProperty(circle.getLayoutX());
 		DoubleProperty circleY = new SimpleDoubleProperty(circle.getLayoutY());
 		Rectangle paddle = new Rectangle(80, 20);
+		Rectangle block = new Rectangle(300,400,200,200);
+		System.out.println(block);
 		paddle.setFill(Color.BLUE);
 		paddle.setLayoutX(400);
 		paddle.setLayoutY(670);
@@ -74,45 +76,12 @@ public class Example_Ball extends Application {
 			}
 		});
 
-		// private EventHandler<KeyEvent> keyListener = new
-		// EventHandler<KeyEvent>() {
-		// @Override
-		// public void handle(KeyEvent event) {
-		// if(event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN
-		// ||
-		// event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT)
-		// {
-		// //your code for moving the ship
-		// }
-		// else if(event.getCode() == KeyCode.SPACE) {
-		// //your code for shooting the missile
-		// }
-		// event.consume();
-		// }
-		// };
 		Image smiley = new Image(getClass().getResource("Emotes-face-kiss-icon.png").toExternalForm());
 		ImagePattern imagePattern = new ImagePattern(smiley);
 		circle.setFill(imagePattern);
-		// smiley.set(150);
-		// smiley.setY(150);
-		// circle.layoutXProperty().addListener(new ChangeListener(){
-		// @Override public void changed(ObservableValue o,Object oldVal,
-		// Object newVal){
-		// smiley.setX(circle.getLayoutX()-circle.getRadius()-5);
-		// System.out.println("done");
-		// }
-		// });
-		// circle.layoutYProperty().addListener(new ChangeListener(){
-		// @Override public void changed(ObservableValue o,Object oldVal,
-		// Object newVal){
-		// smiley.setY(circle.getLayoutX()-circle.getRadius()-5);
-		// System.out.println("done");
-		// }
-		// });
-		circle.setLayoutX(250);
-		circle.setLayoutY(250);
+		System.out.println(circle.getLayoutX());
 
-		canvas.getChildren().addAll(circle, paddle);
+		canvas.getChildren().addAll(block,circle, paddle);
 		// for (int i=0; i<15; i++){
 		// Brick brick = new Brick(Color.RED,
 		// ((i*4)%(gameSizeX/gridMatrix.offSet))*gridMatrix.offSet,
@@ -121,7 +90,6 @@ public class Example_Ball extends Application {
 		// brick.addBlock(canvas);
 		// gridMatrix.add(brick, (i*3)+4);
 		// }
-		levelSelector.level4();
 		final Timeline loop = new Timeline(new KeyFrame(Duration.millis(5), new EventHandler<ActionEvent>() {
 
 			double deltaX = 1;
@@ -148,17 +116,33 @@ public class Example_Ball extends Application {
 						&& circle.getLayoutX() <= paddle.getLayoutX() + 100) {
 					deltaY *= -1;
 				}
-
+				
+				double bbX = block.getX() - circle.getRadius();
+				//System.out.println("BBX: " +bbX);
+				double bbY = block.getY() - circle.getRadius();
+				double bbXPrime = bbX+(block.getWidth() + (2*circle.getRadius()));
+				//System.out.println("Prime"+bbXPrime);
+				double bbYPrime = bbY+(block.getHeight() + (2*circle.getRadius()));
+				//System.out.println("Center X Positon: "+circle.toString());
+				//System.out.println(circle.getLayoutX());
+				if (circle.getLayoutX()>bbX&&circle.getLayoutX()<bbXPrime&&(circle.getLayoutY()==bbY||circle.getLayoutY()==bbYPrime)){
+					deltaY *= -1;
+					System.out.println("Inside");
+				}
+				if (circle.getLayoutY()>bbY&&circle.getLayoutY()<bbYPrime&&(circle.getLayoutX()==bbX||circle.getLayoutX()==bbXPrime)){
+					deltaX *= -1;
+					System.out.println("Inside");
+				}
 				if (atRightBorder || atLeftBorder) {
 					deltaX *= -1;
 				}
-				if (atTopBorder) {
+				if (atTopBorder||atBottomBorder) {
 					deltaY *= -1;
 				}
-				if (atBottomBorder) {
-					System.out.println("You just lost the ball!");
-					primaryStage.close();
-				}
+//				if (atBottomBorder) {
+//					System.out.println("You just lost the ball!");
+//					primaryStage.close();
+//				}
 
 			}
 		}));
