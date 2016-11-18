@@ -121,10 +121,12 @@ public class PlayLevel {
 					if (circle.getLayoutX()>bricks.get(i).getBlockX(circle)&&circle.getLayoutX()<bricks.get(i).getBlockXPrime(circle)&&(circle.getLayoutY()==bricks.get(i).getBlockY(circle)||circle.getLayoutY()==bricks.get(i).getBlockYPrime(circle))){
 						deltaY *= -1;
 						bricks.remove(i).removeBlock(canvas);
+						//SFX.playBreak();
 					}
 					if (circle.getLayoutY()>bricks.get(i).getBlockY(circle)&&circle.getLayoutY()<bricks.get(i).getBlockYPrime(circle)&&(circle.getLayoutX()==bricks.get(i).getBlockX(circle)||circle.getLayoutX()==bricks.get(i).getBlockXPrime(circle))){
 						deltaX *= -1;
 						bricks.remove(i).removeBlock(canvas);
+						//SFX.playBreak();
 					}
 					}catch(Exception e){
 						
