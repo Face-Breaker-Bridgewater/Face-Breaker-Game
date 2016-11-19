@@ -12,7 +12,7 @@ public class Music
 	{
 		try
 		{
-			File Yaverclap = new File("src/Yaverclap - The Sky.wav");
+			File Yaverclap = new File("Yaverclap - The Sky.wav");
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Yaverclap));
 		//	clip.start();

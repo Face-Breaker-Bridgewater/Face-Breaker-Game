@@ -52,7 +52,7 @@ public class FBConnection {
 				throw new RuntimeException("Invalid code received " + e);
 			}
 			URLConnection fbConnection;
-			StringBuffer b = null; 
+			StringBuffer b = null;
 			try {
 				fbConnection = fbGraphURL.openConnection();
 				BufferedReader in;

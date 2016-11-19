@@ -11,10 +11,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
  
 
-public class FBGraph {
+public class Facebook {
 	private String accessToken;
 
-	public FBGraph(String accessToken) {
+	public Facebook(String accessToken) {
 		this.accessToken = accessToken;
 	}
 
@@ -51,7 +51,7 @@ public class FBGraph {
 			if (json.has("email"))
 				fbProfile.put("email", json.getString("email"));
 			if (json.has("proPic"))
-				fbProfile.put("picture", json.getObject("picture"));
+				fbProfile.put("picture", json.getString("picture"));
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -60,28 +60,3 @@ public class FBGraph {
 		return fbProfile;
 	}
 }
-	
-    	    
-   /* private void importFbProfilePhoto() {
-	        if (AccessToken.getCurrentAccessToken() != null) 
-	        	{
-	            	GraphRequest request = GraphRequest.newMeRequest (AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() 
-	            	{        	
-	            		@Override
-	            		public void onCompleted(JSONObject me, GraphResponse response) 
-	            		{
-	            			if (AccessToken.getCurrentAccessToken() != null) 
-	            			{
-	            				if (me != null) 
-	            				{            
-	            					String profileImageUrl = ImageRequest.getProfilePictureUri(me.optString("id"), 500, 500).toString();
-	            					Log.i(LOG_TAG, profileImageUrl);
-	            				}
-	            			}
-	            		}
-	            });
-	            GraphRequest.executeBatchAsync(request);
-	        }
-	    }
-	}
-}*/
