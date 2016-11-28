@@ -1,3 +1,8 @@
+/*
+ * Hunter Layman
+ * 
+ * Music by Seth Trumbo
+ */
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -16,9 +21,16 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.util.ArrayList;
 
+import javax.sound.sampled.Clip;
+
 public class PlayLevel {
 	int counterRight = 0;
 	int counterLeft = 0;
+	SFX playSFX = new SFX();
+	Clip boop = playSFX.playBoop();
+	Clip brea = playSFX.playBreak();
+	
+	
 	public PlayLevel(int i) throws NullPointerException, MatrixOutOfBoundsException {
 		playLevel(i);
 	}
@@ -30,7 +42,7 @@ public class PlayLevel {
 		Scene scene = new Scene(canvas, gameSizeX, 700);
 		stage.setScene(scene);
 		stage.show();
-		ArrayBrick  bricks;
+		ArrayBrick bricks;
 		ExamplePuzzles levelSelector = new ExamplePuzzles(gameSizeX, 50, canvas);
 		Rectangle paddle = new Rectangle(80, 20);
 		paddle.setFill(Color.BLUE);
@@ -39,7 +51,7 @@ public class PlayLevel {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				
+
 				if (paddle.getLayoutX() >= 0 && paddle.getLayoutX() <= gameSizeX - 85) {
 					if (event.getCode().equals(KeyCode.RIGHT)) {
 						paddle.setLayoutX(paddle.getLayoutX() + 15);
@@ -48,23 +60,24 @@ public class PlayLevel {
 						paddle.setLayoutX(paddle.getLayoutX() - 15);
 					}
 				} else {
-					
-					if (paddle.getLayoutX() >= 670&&counterRight<10) {
+
+					if (paddle.getLayoutX() >= (gameSizeX - paddle.getWidth()) && counterRight < 10) {
 						paddle.setLayoutX(paddle.getLayoutX() - 15);
 						counterRight++;
 						System.out.println(counterRight);
 					}
-					if (paddle.getLayoutX() >= 670&&counterRight>=10){
+					if (paddle.getLayoutX() >= 670 && counterRight >= 10) {
 						System.out.println("true");
 						paddle.setLayoutX(10);
 						counterRight = 0;
 					}
-					if (paddle.getLayoutX() <= 0&&counterLeft<10) {
+					if (paddle.getLayoutX() <= 0 && counterLeft < 10) {
 						paddle.setLayoutX(paddle.getLayoutX() + 15);
 						counterLeft++;
-					}if (paddle.getLayoutX() <= 0&&counterLeft>=10) {
+					}
+					if (paddle.getLayoutX() <= 0 && counterLeft >= 10) {
 						paddle.setLayoutX(670);
-						counterLeft=0;
+						counterLeft = 0;
 					}
 				}
 			}
@@ -77,8 +90,8 @@ public class PlayLevel {
 		circle.setFill(imagePattern);
 		canvas.getChildren().addAll(circle, paddle);
 		bricks = levelSelector.level(i);
-		//bricks.remove(0).removeBlock(canvas);
-		System.out.println("Size"+bricks.size());
+		// bricks.remove(0).removeBlock(canvas);
+		System.out.println("Size" + bricks.size());
 		final Timeline loop = new Timeline(new KeyFrame(Duration.millis(5), new EventHandler<ActionEvent>() {
 
 			double deltaX = 1;
@@ -99,11 +112,13 @@ public class PlayLevel {
 				if (circle.getLayoutY() == paddle.getLayoutY() - circle.getRadius()
 						&& circle.getLayoutX() >= paddle.getLayoutX() - 20
 						&& circle.getLayoutX() <= paddle.getLayoutX() + 100) {
-					if (circle.getLayoutX() >= paddle.getLayoutX()-20&&circle.getLayoutX() <= paddle.getLayoutX()&&deltaX>0){
+					if (circle.getLayoutX() >= paddle.getLayoutX() - 20 && circle.getLayoutX() <= paddle.getLayoutX()
+							&& deltaX > 0) {
 						deltaY *= -1;
 						deltaX *= -1;
-					}else  
+					} else
 						deltaY *= -1;
+					boop.start();
 				}
 
 				if (atRightBorder || atLeftBorder) {
@@ -115,21 +130,28 @@ public class PlayLevel {
 				if (atBottomBorder) {
 					stage.close();
 				}
-				
-				for (int i=0; i<bricks.size(); i++){
-					try{
-					if (circle.getLayoutX()>bricks.get(i).getBlockX(circle)&&circle.getLayoutX()<bricks.get(i).getBlockXPrime(circle)&&(circle.getLayoutY()==bricks.get(i).getBlockY(circle)||circle.getLayoutY()==bricks.get(i).getBlockYPrime(circle))){
-						deltaY *= -1;
-						bricks.remove(i).removeBlock(canvas);
-						//SFX.playBreak();
-					}
-					if (circle.getLayoutY()>bricks.get(i).getBlockY(circle)&&circle.getLayoutY()<bricks.get(i).getBlockYPrime(circle)&&(circle.getLayoutX()==bricks.get(i).getBlockX(circle)||circle.getLayoutX()==bricks.get(i).getBlockXPrime(circle))){
-						deltaX *= -1;
-						bricks.remove(i).removeBlock(canvas);
-						//SFX.playBreak();
-					}
-					}catch(Exception e){
-						
+
+				for (int i = 0; i < bricks.size(); i++) {
+					try {
+						if (circle.getLayoutX() > bricks.get(i).getBlockX(circle)
+								&& circle.getLayoutX() < bricks.get(i).getBlockXPrime(circle)
+								&& (circle.getLayoutY() == bricks.get(i).getBlockY(circle)
+										|| circle.getLayoutY() == bricks.get(i).getBlockYPrime(circle))) {
+							deltaY *= -1;
+							bricks.remove(i).removeBlock(canvas);
+							brea.start();
+							// SFX.playBreak();
+						}
+						if (circle.getLayoutY() > bricks.get(i).getBlockY(circle)
+								&& circle.getLayoutY() < bricks.get(i).getBlockYPrime(circle)
+								&& (circle.getLayoutX() == bricks.get(i).getBlockX(circle)
+										|| circle.getLayoutX() == bricks.get(i).getBlockXPrime(circle))) {
+							deltaX *= -1;
+							bricks.remove(i).removeBlock(canvas);
+							brea.start();
+						}
+					} catch (Exception e) {
+
 					}
 				}
 				if (bricks.isEmpty())
