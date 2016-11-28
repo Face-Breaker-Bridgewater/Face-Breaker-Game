@@ -1,4 +1,7 @@
-
+/*
+ * Jarret Horton
+ * Hunter Layman
+ */
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,14 +20,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
-public class UserName extends Application {
+public class Login extends Application {
 
 	public ArrayList<Player> users;
-	Player thePlayer;
+	public Player thePlayer;
+	public Login loginScreen;
 
 	@Override
 	public void start(Stage primaryStage) {
-
+		loginScreen = this;
+		
 		StackPane pane = new StackPane();
 		Scene scene = new Scene(pane, 400, 300);
 		primaryStage.setTitle("Login");
@@ -52,10 +57,9 @@ public class UserName extends Application {
 					int returnIndex = -1;
 					if (users.isEmpty() == false) {
 						//System.out.println("Size: " + users.size());
-						for (int i = 0; i < users.size(); i++) {
-							String user = users.get(i).getUserName();
-							System.out.println("userName: " + user);
-							if (user.equals(puname)) {
+						for (int i = 0; i < users.size(); i++) { 
+							System.out.println(users.get(i));
+							if (users.get(i).getUserName().equals(puname)) {
 								System.out.println("User " + puname + " is old username");
 								returnIndex = i;
 								thePlayer = users.get(i);
@@ -71,15 +75,16 @@ public class UserName extends Application {
 					
 					System.out.println("This is the Player: "+thePlayer);
 					MainMenu mainMenu = new MainMenu();
-					thePlayer = mainMenu.runMainMenu(thePlayer);
+					mainMenu.runMainMenu(loginScreen);
+					System.out.println("This is the Player: "+thePlayer);
 					
-					try {
+					/*try {
 						System.out.println(users.get(0));
 						writeObject(users);
 					} catch (IOException a) {
 						// TODO Auto-generated catch block
 						a.printStackTrace();
-					}
+					}*/
 
 					primaryStage.close();
 				} else {
@@ -93,20 +98,21 @@ public class UserName extends Application {
 		launch(args);
 	}
 
-	public void writeObject(ArrayList<Player> list) throws IOException {
+	public void writeObject() throws IOException {
 		FileOutputStream fout = new FileOutputStream("users");
 		ObjectOutputStream out = new ObjectOutputStream(fout);
-		out.writeObject(list);
+		out.writeObject(users);
 		System.out.println("Success");
 		out.close();
 		fout.close();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void readObject() throws FileNotFoundException, IOException, ClassNotFoundException {
 		try {
 			FileInputStream fis = new FileInputStream("users");
 			ObjectInputStream in = new ObjectInputStream(fis);
-			users = (ArrayList<Player>)in.readObject();
+			users = (ArrayList<Player>) in.readObject();
 			System.out.println("Success");
 			in.close();
 			fis.close();
