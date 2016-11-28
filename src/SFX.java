@@ -7,51 +7,50 @@ import javax.sound.sampled.Clip;
 
 public class SFX
 {
-	public static void playBoop()
+	public static Clip playBoop()
 	{
 		try
 		{
 			File Boop = new File("Boop.wav");
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Boop));
-			clip.start();
-			Thread.sleep(clip.getMicrosecondLength()/500);
+			return clip;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+		return null;
 	}
-	public static void playBounce()
+	public static Clip playBounce()
 	{
 		try
 		{
 			File Bounce = new File("Bounce.wav");
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Bounce));
-			clip.start();
-			Thread.sleep(clip.getMicrosecondLength()/500);
+			return clip;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
-	public static void playBreak() {
+	public static Clip playBreak() {
 		try
 		{
 			File Break = new File("Break.wav");
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Break));
-			clip.start();
-			Thread.sleep(clip.getMicrosecondLength()/500);
+			return clip;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		
+		return null;
 	}
 	
 	
