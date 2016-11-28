@@ -71,7 +71,7 @@ public class UserName extends Application {
 					
 					System.out.println("This is the Player: "+thePlayer);
 					MainMenu mainMenu = new MainMenu();
-					//thePlayer = runMainMenu(thePlayer);
+					thePlayer = mainMenu.runMainMenu(thePlayer);
 					
 					try {
 						System.out.println(users.get(0));
