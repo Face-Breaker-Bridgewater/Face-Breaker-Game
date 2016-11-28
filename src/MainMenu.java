@@ -28,12 +28,24 @@ import javafx.stage.Stage;
 public class MainMenu {
 	
 	Player returnedPlayer;
+	Login login;
 	public MainMenu() {
 	//	runMainMenu();
 	}
 
-	public Player runMainMenu(Player player) {
+	public Player runMainMenu(Login login) {
+		this.login = login;
+		returnedPlayer = login.thePlayer;
+		
 		Stage mainStage = new Stage();
+		mainStage.setOnHidden(e -> {
+			try {
+				System.out.println("Saving player: " + returnedPlayer.toString());
+				login.writeObject();
+			} catch (IOException a) {
+				a.printStackTrace();
+			}
+		});
 
 		Music playMusic = new Music();
 		Clip playBGMusic = playMusic.playYaverclap();
@@ -66,7 +78,7 @@ public class MainMenu {
 		
 		playGame.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				PlayGame newGame = new PlayGame(mainStage, player);
+				PlayGame newGame = new PlayGame(mainStage, returnedPlayer);
 				returnedPlayer = newGame.playGame();
 				mainStage.close();
 			}
