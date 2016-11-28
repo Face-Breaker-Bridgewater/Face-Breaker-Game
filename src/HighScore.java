@@ -1,8 +1,8 @@
-//Jarrett Is the BOMB
-/*Making an arraylist of the type score
- * making a file where the files will be saved
- * then I initialize the arraylist 
+/*
+ * Jarrett Horton
+ * Laura Gretz
  */
+
 import java.util.*;
 import java.io.*;
 

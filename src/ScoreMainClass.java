@@ -1,3 +1,6 @@
+/*Laura Gretz
+ * Jarrett Horton
+ */
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,3 +1,5 @@
+/*Seth Trumbo
+ */
 import java.io.File;
 import java.net.URL;
 
@@ -15,8 +17,6 @@ public class Music
 			File Yaverclap = new File("Yaverclap - The Sky.wav");
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Yaverclap));
-		//	clip.start();
-			//Thread.sleep(clip.getMicrosecondLength()/500);
 			return clip;
 		}
 		catch(Exception e)

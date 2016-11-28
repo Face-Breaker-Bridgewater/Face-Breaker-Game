@@ -1,4 +1,5 @@
-//Jarrett is the BOMB
+/*Jarrett Horton
+ */
 /*using this to compare two objects*/
 
 import java.util.Comparator;

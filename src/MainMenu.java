@@ -1,3 +1,6 @@
+/*
+ * Laura Gretz
+ */
 import java.io.File;
 
 import javax.print.DocFlavor.URL;
