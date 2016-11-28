@@ -12,12 +12,13 @@ import javafx.stage.Stage;
 
 public class PlayGame {
 	Stage mainStage;
-	public PlayGame(Stage mainStage) {
-		playGame();
+	Player player;
+	public PlayGame(Stage mainStage,Player player) {
 		this.mainStage = mainStage;
+		this.player = player;
 	}
 
-	public void playGame() {
+	public Player playGame() {
 		Stage stage = new Stage();
 		StackPane pane = new StackPane();
 		int levelNumber = 10;
@@ -60,6 +61,8 @@ public class PlayGame {
 		pane.getChildren().addAll(back,title,separator1,selectLevel);
 		stage.setScene(scene);
 		stage.show();
+		player.setLevel(5);
+		return player;
 	}
 }
 
