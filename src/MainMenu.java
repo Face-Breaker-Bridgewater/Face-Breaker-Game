@@ -1,7 +1,10 @@
 /*
  * Laura Gretz
+ * 
+ * Music by Seth Trumbo
  */
 import java.io.File;
+import java.io.IOException;
 
 import javax.print.DocFlavor.URL;
 import javax.sound.sampled.Clip;

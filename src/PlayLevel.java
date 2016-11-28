@@ -26,10 +26,6 @@ import javax.sound.sampled.Clip;
 public class PlayLevel {
 	int counterRight = 0;
 	int counterLeft = 0;
-	SFX playSFX = new SFX();
-	Clip boop = playSFX.playBoop();
-	Clip brea = playSFX.playBreak();
-	
 	
 	public PlayLevel(int i) throws NullPointerException, MatrixOutOfBoundsException {
 		playLevel(i);
@@ -118,14 +114,16 @@ public class PlayLevel {
 						deltaX *= -1;
 					} else
 						deltaY *= -1;
-					boop.start();
+					SFX.playBoop();
 				}
 
 				if (atRightBorder || atLeftBorder) {
 					deltaX *= -1;
+					SFX.playBounce();
 				}
 				if (atTopBorder) {
 					deltaY *= -1;
+					SFX.playBounce();
 				}
 				if (atBottomBorder) {
 					stage.close();
@@ -139,8 +137,7 @@ public class PlayLevel {
 										|| circle.getLayoutY() == bricks.get(i).getBlockYPrime(circle))) {
 							deltaY *= -1;
 							bricks.remove(i).removeBlock(canvas);
-							brea.start();
-							// SFX.playBreak();
+							 SFX.playBreak();
 						}
 						if (circle.getLayoutY() > bricks.get(i).getBlockY(circle)
 								&& circle.getLayoutY() < bricks.get(i).getBlockYPrime(circle)
@@ -148,7 +145,7 @@ public class PlayLevel {
 										|| circle.getLayoutX() == bricks.get(i).getBlockXPrime(circle))) {
 							deltaX *= -1;
 							bricks.remove(i).removeBlock(canvas);
-							brea.start();
+							SFX.playBreak();
 						}
 					} catch (Exception e) {
 
