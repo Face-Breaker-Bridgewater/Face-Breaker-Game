@@ -22,16 +22,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
-public class MainMenu extends Application {
+public class MainMenu {
 	
-	public static void main(String[] args) {
-		launch(args);
+	Player returnedPlayer;
+	public MainMenu() {
+	//	runMainMenu();
 	}
-	
-	@Override 
-	public void start(Stage mainStage) {
-		//java.net.URL bitQuest = getClass().getResource("BitQuest.wav");
-		//final AudioClip clip = new AudioClip(bitQuest.toString());
+
+	public Player runMainMenu(Player player) {
+		Stage mainStage = new Stage();
+
 		Music playMusic = new Music();
 		Clip playBGMusic = playMusic.playYaverclap();
 		
@@ -63,7 +63,8 @@ public class MainMenu extends Application {
 		
 		playGame.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				PlayGame newGame = new PlayGame(mainStage);
+				PlayGame newGame = new PlayGame(mainStage, player);
+				returnedPlayer = newGame.playGame();
 				mainStage.close();
 			}
 		});
@@ -106,6 +107,7 @@ public class MainMenu extends Application {
         mainStage.setScene(scene);
         mainStage.show();
 		
+        return returnedPlayer;
 	}
 
 }
