@@ -1,8 +1,9 @@
-Click play game button to play.
+1. Click play game button to play.
 
-Insert username and password to retrieve your old scores.
+2. Insert Facebook username and password to retrieve profile photo. 
+	The username provided for highscores must match Facebook username.
 
-Use left and right keys to move bar from side to side.
-Hit your facebook profile picture off the bar to break all the bricks.
+3. Use left and right keys to move bar from side to side.
+4. Hit your facebook profile picture off the bar to break all the bricks.
 
 
