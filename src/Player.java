@@ -1,4 +1,7 @@
-// Jarrett is the BOMB!!
+/*
+ * Jarret Horton
+ * Hunter Layman
+ */
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,11 +15,13 @@ public class Player implements Serializable{
 	private String UserName;
 	private int Level;
 	private int Score;
+	private String password;
 	
-	public Player(String UserName){
+	public Player(String UserName,String password){
 		this.UserName = UserName;
 		Level = 1;
 		Score = 0;
+		this.setPassword(password);
 	}
 	
 	
@@ -51,6 +56,16 @@ public class Player implements Serializable{
 	}
 	public String toString(){
 		return "Username: "+UserName+", Level: "+Level+", Score: "+Score;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
