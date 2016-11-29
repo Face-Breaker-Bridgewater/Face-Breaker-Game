@@ -2,6 +2,18 @@ import javafx.scene.paint.Color;
 import javafx.animation.Timeline;
 
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.User;
 
 import javafx.animation.KeyFrame;
 import javafx.application.Application;
@@ -76,11 +88,28 @@ public class Example_Ball extends Application {
 			}
 		});
 
+		
 		Image smiley = new Image(getClass().getResource("Emotes-face-kiss-icon.png").toExternalForm());
 		ImagePattern imagePattern = new ImagePattern(smiley);
 		circle.setFill(imagePattern);
 		System.out.println(circle.getLayoutX());
-
+		
+		//PICTURE FOR BALL
+		/*@SuppressWarnings("deprecation")
+		FacebookClient facebookClient= new DefaultFacebookClient(FBConstants.MY_ACCESS_TOKEN);
+	       
+	    User user = facebookClient.fetchObject("me", User.class,
+	    		   Parameter.with("fields", "picture,id,gender,name,birthday,email")); 
+	    
+	    String fbURL = user.getPicture().getUrl();
+	       //java.awt.Image fbimage = java.awt.Toolkit.getDefaultToolkit().createImage(fbURL);
+	        
+		Image fbpic = new Image(getClass().getResource(fbURL).toExternalForm());
+		ImagePattern imagePattern = new ImagePattern(fbpic);
+		circle.setFill(imagePattern);
+		System.out.println(circle.getLayoutX());
+		*/
+		
 		canvas.getChildren().addAll(block,circle, paddle);
 		// for (int i=0; i<15; i++){
 		// Brick brick = new Brick(Color.RED,

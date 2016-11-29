@@ -1,3 +1,8 @@
+/*Juan Padilla
+ * 
+ * 
+ * 
+ * */
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -22,17 +27,6 @@ public class FBInfoExtraction {
 	       
 	    User user = facebookClient.fetchObject("me", User.class,
 	    		   Parameter.with("fields", "picture,id,gender,name,birthday,email"));  
-	        
-	         
-	       /*System.out.println("User="+ user);
-	       System.out.println("id= "+ user.getId());
-	       System.out.println("Birthday= "+ user.getBirthday());
-	       System.out.println("Gender= "+ user.getGender());
-	       System.out.println("Name="+ user.getName());
-	       System.out.println("Email= "+ user.getEmail());
-	       System.out.println("Picture= " +user.getPicture().getUrl());
-	       
-	       */
 	    
 	       //Extracting picture
 	       String fbURL = user.getPicture().getUrl();
@@ -45,10 +39,21 @@ public class FBInfoExtraction {
 	        	e.printStackTrace();
 	        }
 
+	        //Picture Display
 	        JFrame frame = new JFrame();
 	        frame.setSize(300, 300);
 	        JLabel label = new JLabel(new ImageIcon(image));
 	        frame.add(label);
-	        frame.setVisible(true);     
+	        frame.setVisible(true);
+	        
+	        //User Info Displayed
+	        /*System.out.println("User="+ user);
+		       System.out.println("id= "+ user.getId());
+		       System.out.println("Birthday= "+ user.getBirthday());
+		       System.out.println("Gender= "+ user.getGender());
+		       System.out.println("Name="+ user.getName());
+		       System.out.println("Email= "+ user.getEmail());
+		       System.out.println("Picture= " +user.getPicture().getUrl()); 
+		       */
 	    }
 }

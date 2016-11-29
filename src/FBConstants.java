@@ -4,7 +4,7 @@ public class FBConstants {
                  = "http://localhost:8080/facebookfriends/FriendsListServlet";
  
     
-   public static final String MY_ACCESS_TOKEN = "EAAZAbEtzyfuoBALHluvAWhEBGUZBbWto10sb3hZAH5Q35wye9dtrztTqaaOnm8nPqjotTyYHLDPmDE1yBuzXgaiCUowzgKJIPHOyc472rrajE7zD7aEtfbOvLJaCNU7ZAJN5RIg1O26NJQIjDp9TVv7eAynVMGU0vpghrlZBzMAZDZD";
+   public static final String MY_ACCESS_TOKEN = "EAACEdEose0cBAPBt26QHjqrCB239RpmzyZByCyguXKI6niu5uyr2OHrEhM4LBSvmKFwGEWD6U5ZAioaZBfECEV4IxAjVkrKlkaZBapmGuyLQZAFEw5OMknw3omzCZAQkQ2R0iPpJ2h2tlkMBFLIzeq6sVQP6DHTyTQvPZCAz6jQHwZDZD";
    //Laura's public static final String MY_ACCESS_TOKEN
    //Hunter's public static final String My_ACCESS_TOKEN
    //Jarett's
