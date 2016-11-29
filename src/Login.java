@@ -37,12 +37,21 @@ public class Login extends Application {
 		primaryStage.show();
 		Label username = new Label("Username:");
 		username.setTranslateX(-150);
+		username.setTranslateY(-50);
 		TextField usertext = new TextField();
 		usertext.setMaxWidth(150);
+		usertext.setTranslateY(-50);
+		usertext.setTranslateX(50);
 		usertext.setText("");
+		Label password = new Label ("Facebook Password:");
+		password.setTranslateX(-130);
+		TextField userPassword = new TextField();
+		userPassword.setMaxWidth(150);
+		userPassword.setText("");
+		userPassword.setTranslateX(50);
 		Button submit = new Button("Submit");
 		submit.setTranslateY(100);
-		pane.getChildren().addAll(username, usertext, submit);
+		pane.getChildren().addAll(username, usertext,password,userPassword, submit);
 		submit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
@@ -68,7 +77,7 @@ public class Login extends Application {
 					}
 					if (returnIndex == -1) {
 						//System.out.println(puname);
-						Player newPlayer = new Player(puname);
+						Player newPlayer = new Player(puname,userPassword.getText());
 						users.add(0, newPlayer);
 						thePlayer = users.get(0);
 					}
@@ -76,7 +85,6 @@ public class Login extends Application {
 					System.out.println("This is the Player: "+thePlayer);
 					MainMenu mainMenu = new MainMenu();
 					mainMenu.runMainMenu(loginScreen);
-					System.out.println("This is the Player: "+thePlayer);
 					
 					/*try {
 						System.out.println(users.get(0));
