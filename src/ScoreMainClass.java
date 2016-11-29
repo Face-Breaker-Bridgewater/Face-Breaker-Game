@@ -31,16 +31,21 @@ import javafx.stage.Stage;
 
 public class ScoreMainClass {
 	Stage mainStage;
-	public ScoreMainClass(Stage mainStage) {
-		runHighScores();
+	ArrayList<Player> players;
+	public ScoreMainClass(Stage mainStage, ArrayList<Player> players) {
 		this.mainStage = mainStage;
+		this.players = players;
+		runHighScores(this.players);
 	}
 
 	
 	@SuppressWarnings("unchecked")
-	public void runHighScores() {
+	public void runHighScores(ArrayList<Player> players) {
+		System.out.println("Size of array inside smc"+players.size());
 		Stage stage = new Stage();
-		
+		for (int i=0; i<players.size(); i++){
+			System.out.println("In Score Main Class"+players.get(i));
+		}
 		stage.setTitle("High Scores");
 		stage.setWidth(500);
 		stage.setHeight(500);
@@ -49,7 +54,7 @@ public class ScoreMainClass {
 
 		HighScore hs = new HighScore();
 		
-		Object[] sorted = hs.returnScores().entrySet().toArray();
+		Object[] sorted = hs.returnScores(players).entrySet().toArray();
 		Arrays.sort(sorted, new Comparator() {
 				@Override
 				public int compare(Object o1, Object o2) {
@@ -65,13 +70,16 @@ public class ScoreMainClass {
         vbox.setPadding(new Insets(10, 0, 0, 10));
         
         int i = 0; 
+        final int  MAX_SIZE = 10;
         for (Object e : sorted) {
         	i++;
-  		    String name = ((Map.Entry<String, Integer>) e).getKey().toString();
-  		    String val = ((Map.Entry<String, Integer>) e).getValue().toString();
+        	if(i <= MAX_SIZE){
+        		String name = ((Map.Entry<String, Integer>) e).getKey().toString();
+        		String val = ((Map.Entry<String, Integer>) e).getValue().toString();
  
-  		    Label this_score = new Label(i +". " + name + "  " + val);
-  		    vbox.getChildren().add(this_score);
+        		Label this_score = new Label(i +". " + name + "  " + val);
+        		vbox.getChildren().add(this_score);
+        	}
   		}
         vbox.getStyleClass().add("vbox");
         

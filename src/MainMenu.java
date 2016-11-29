@@ -39,8 +39,8 @@ public class MainMenu {
 	public Player runMainMenu(Login login) {
 		this.login = login;
 		returnedPlayer = login.thePlayer;
-		
 		Stage mainStage = new Stage();
+		
 		mainStage.setOnHidden(e -> {
 			try {
 				System.out.println("Saving player: " + returnedPlayer.toString());
@@ -89,7 +89,8 @@ public class MainMenu {
 	   
 		highScore.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				ScoreMainClass highscores = new ScoreMainClass(mainStage);
+				System.out.println("size of array:" + login.users.size());
+				ScoreMainClass highscores = new ScoreMainClass(mainStage, login.users);
 				mainStage.close();
 			}
 		});
