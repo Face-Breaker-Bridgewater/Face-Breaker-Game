@@ -1,7 +1,7 @@
 /*
  * Hunter Layman
  * 
- * Music by Seth Trumbo
+ * SFX by Seth Trumbo
  */
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -23,15 +23,24 @@ import java.util.ArrayList;
 
 import javax.sound.sampled.Clip;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.User;
+
 public class PlayLevel {
 	int counterRight = 0;
 	int counterLeft = 0;
-	
-	public PlayLevel(int i) throws NullPointerException, MatrixOutOfBoundsException {
-		playLevel(i);
+	Player player;
+	int level;
+	public PlayLevel(Player player,int i) throws NullPointerException, MatrixOutOfBoundsException {
+		this.player = player;
+		this.level = i;
 	}
 
-	public void playLevel(int i) throws NullPointerException, MatrixOutOfBoundsException {
+	public Player playLevel(int i,Player player) throws NullPointerException, MatrixOutOfBoundsException {
+		System.out.println("Player from playlevel"+player);
+		player.setScore(50);
 		Stage stage = new Stage();
 		Pane canvas = new Pane();
 		int gameSizeX = 750;
@@ -81,8 +90,15 @@ public class PlayLevel {
 		Circle circle = new Circle(15);
 		circle.setLayoutX(400);
 		circle.setLayoutY(600);
-		Image smiley = new Image(getClass().getResource("Emotes-face-kiss-icon.png").toExternalForm());
-		ImagePattern imagePattern = new ImagePattern(smiley);
+		//Image smiley = new Image(getClass().getResource("Emotes-face-kiss-icon.png").toExternalForm());
+		 @SuppressWarnings("deprecation")
+			FacebookClient facebookClient= new DefaultFacebookClient(FBConstants.MY_ACCESS_TOKEN);
+		       
+		    User user = facebookClient.fetchObject("me", User.class,
+		    		   Parameter.with("fields", "picture,id,gender,name,birthday,email"));  
+		    String fbURL = user.getPicture().getUrl();
+		    Image fbpic = new Image (fbURL);
+		ImagePattern imagePattern = new ImagePattern(fbpic);
 		circle.setFill(imagePattern);
 		canvas.getChildren().addAll(circle, paddle);
 		bricks = levelSelector.level(i);
@@ -138,6 +154,7 @@ public class PlayLevel {
 							deltaY *= -1;
 							bricks.remove(i).removeBlock(canvas);
 							 SFX.playBreak();
+							 
 						}
 						if (circle.getLayoutY() > bricks.get(i).getBlockY(circle)
 								&& circle.getLayoutY() < bricks.get(i).getBlockYPrime(circle)
@@ -158,6 +175,6 @@ public class PlayLevel {
 
 		loop.setCycleCount(Timeline.INDEFINITE);
 		loop.play();
-
+		return player;
 	}
 }
