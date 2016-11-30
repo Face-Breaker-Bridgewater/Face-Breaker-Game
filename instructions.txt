@@ -1,9 +1,17 @@
 1. Click play game button to play.
-
 2. Insert Facebook username and password to retrieve profile photo. 
 	The username provided for highscores must match Facebook username.
-
 3. Use left and right keys to move bar from side to side.
 4. Hit your facebook profile picture off the bar to break all the bricks.
 
-
+For Facebook:
+	- Go to https://developers.facebook.com/products/ads/?
+	- Register with your facebook if you do not have an account
+	- Go to thelonejohn App Dashboard
+	- Click Tools & Support on the top right
+	- Click Graph API Explorer 
+	- Click get access token on the right
+	- Click all User Data Permissions
+	- If "login with Facebook?" pops up, click "Continue as (YOURNAME)"
+	- Copy and paste access token into FBConstants.java under MY_ACCESS_TOKEN
+	- stop and rerun this program 

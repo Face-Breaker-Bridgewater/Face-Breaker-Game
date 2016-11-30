@@ -33,7 +33,7 @@
 .helpText {
 	-fx-alignment: CENTER;
 	-fx-text-fill: black;
-	-fx-font: 20px "Arial";
+	-fx-font: 18px "Arial";
 }	
 .vbox {
 	-fx-alignment: CENTER;
