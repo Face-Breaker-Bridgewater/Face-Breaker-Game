@@ -1,4 +1,6 @@
-
+/*
+ * Hunter Layman
+ */
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -49,7 +51,8 @@ public class PlayGame {
 				@Override
 				public void handle(ActionEvent e) {
 					try {
-						PlayLevel level = new PlayLevel(levelSelection);
+						PlayLevel level = new PlayLevel(player,levelSelection);
+						player = level.playLevel(levelSelection, player);
 					} catch (NullPointerException | MatrixOutOfBoundsException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -61,7 +64,9 @@ public class PlayGame {
 		pane.getChildren().addAll(back,title,separator1,selectLevel);
 		stage.setScene(scene);
 		stage.show();
+		System.out.println(player);
 		player.setLevel(5);
+		System.out.println(player);
 		return player;
 	}
 }
