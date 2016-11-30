@@ -1,4 +1,17 @@
 /*Seth Trumbo
+ * Credits:
+ * Yaverclap - The Sky
+ * SoundCloud - https://soundcloud.com/yaverclap
+ * Facebook - https://goo.gl/986pNb
+ * YouTube - https://goo.gl/NZ4gZE
+ * Free Background Music No Copyright Music – YAVERCLAP – The Sky
+ * Free Background Music
+ * Website - http://www.freebackgroundmusic.co.uk
+ * YouTube - http://goo.gl/fFI0z8
+ * SoundCloud - https://soundcloud.com/freebmusic
+ * Facebook - http://goo.gl/2otgOU
+ * Twitter - https://twitter.com/FreeBMusic
+ * Google+ - http://goo.gl/TybZuK
  */
 import java.io.File;
 import java.net.URL;
