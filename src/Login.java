@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -45,7 +46,7 @@ public class Login extends Application {
 		usertext.setText("");
 		Label password = new Label ("Facebook Password:");
 		password.setTranslateX(-130);
-		TextField userPassword = new TextField();
+	    PasswordField userPassword = new PasswordField();
 		userPassword.setMaxWidth(150);
 		userPassword.setText("");
 		userPassword.setTranslateX(50);
