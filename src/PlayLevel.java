@@ -19,6 +19,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.sound.sampled.Clip;
@@ -33,20 +35,36 @@ public class PlayLevel {
 	int counterLeft = 0;
 	Player player;
 	int level;
+	Boolean win = false;
 	public PlayLevel(Player player,int i) throws NullPointerException, MatrixOutOfBoundsException {
 		this.player = player;
 		this.level = i;
 	}
 
-	public Player playLevel(int i,Player player) throws NullPointerException, MatrixOutOfBoundsException {
+	public void setWin(Boolean value){
+		win = value;
+	}
+	public Player playLevel(int i,Player player,Login login,Stage stageReturn) throws NullPointerException, MatrixOutOfBoundsException {
 		System.out.println("Player from playlevel"+player);
-		player.setScore(50);
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		Pane canvas = new Pane();
 		int gameSizeX = 750;
 		Scene scene = new Scene(canvas, gameSizeX, 700);
 		stage.setScene(scene);
 		stage.show();
+		stage.setOnHidden(e -> {
+			try {
+				if (win==true)
+					player.setLevel(player.getLevel()+1);
+				System.out.println("Saving player: " + player.toString());
+				login.writeObject();
+				stageReturn.show();
+				
+			} catch (IOException a) {
+				a.printStackTrace();
+			}
+		});
 		ArrayBrick bricks;
 		ExamplePuzzles levelSelector = new ExamplePuzzles(gameSizeX, 50, canvas);
 		Rectangle paddle = new Rectangle(80, 20);
@@ -124,22 +142,25 @@ public class PlayLevel {
 				if (circle.getLayoutY() == paddle.getLayoutY() - circle.getRadius()
 						&& circle.getLayoutX() >= paddle.getLayoutX() - 20
 						&& circle.getLayoutX() <= paddle.getLayoutX() + 100) {
-					if (circle.getLayoutX() >= paddle.getLayoutX() - 20 && circle.getLayoutX() <= paddle.getLayoutX()
+					if (circle.getLayoutX() >= paddle.getLayoutX() - 20 && circle.getLayoutX() <= paddle.getLayoutX()+20
+							&& deltaX < 0) {
+						deltaY *= -1;
+						deltaX *= -1;
+					}else if (circle.getLayoutX() >= paddle.getLayoutX() + 60 && circle.getLayoutX() <= paddle.getLayoutX()+100
 							&& deltaX > 0) {
 						deltaY *= -1;
 						deltaX *= -1;
-					} else
+					} 
+					else
 						deltaY *= -1;
 					SFX.playBoop();
 				}
 
 				if (atRightBorder || atLeftBorder) {
 					deltaX *= -1;
-					SFX.playBounce();
 				}
 				if (atTopBorder) {
 					deltaY *= -1;
-					SFX.playBounce();
 				}
 				if (atBottomBorder) {
 					stage.close();
@@ -153,7 +174,8 @@ public class PlayLevel {
 										|| circle.getLayoutY() == bricks.get(i).getBlockYPrime(circle))) {
 							deltaY *= -1;
 							bricks.remove(i).removeBlock(canvas);
-							 SFX.playBreak();
+							SFX.playBreak();
+							player.setScore(1);
 							 
 						}
 						if (circle.getLayoutY() > bricks.get(i).getBlockY(circle)
@@ -163,13 +185,18 @@ public class PlayLevel {
 							deltaX *= -1;
 							bricks.remove(i).removeBlock(canvas);
 							SFX.playBreak();
+							player.setScore(1);
 						}
 					} catch (Exception e) {
 
 					}
 				}
-				if (bricks.isEmpty())
+				if (bricks.isEmpty()){
+					//player.setLevel(player.getLevel()+1);
+					//System.out.println(player);
+					setWin(true);
 					stage.close();
+				}
 			}
 		}));
 
