@@ -82,7 +82,7 @@ public class MainMenu {
 		playGame.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				PlayGame newGame = new PlayGame(mainStage, returnedPlayer);
-				returnedPlayer = newGame.playGame();
+				returnedPlayer = newGame.playGame(login);
 				mainStage.close();
 			}
 		});

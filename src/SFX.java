@@ -15,7 +15,6 @@ public class SFX
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Boop));
 			clip.start();
-		//	Thread.sleep(clip.getMicrosecondLength()/500);
 		}
 		catch(Exception e)
 		{
@@ -30,7 +29,6 @@ public class SFX
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Bounce));
 			clip.start();
-			//Thread.sleep(clip.getMicrosecondLength()/500);
 		}
 		catch(Exception e)
 		{
@@ -45,7 +43,6 @@ public class SFX
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Break));
 			clip.start();
-			//Thread.sleep(clip.getMicrosecondLength()/500);
 		}
 		catch(Exception e)
 		{

@@ -1,6 +1,6 @@
 /*
- * Jarrett Horton
  * Laura Gretz
+ * Jarrett Horton
  */
 
 import java.util.*;
