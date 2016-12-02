@@ -1,6 +1,8 @@
 /*
  * Hunter Layman
  */
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -20,11 +22,20 @@ public class PlayGame {
 		this.player = player;
 	}
 
-	public Player playGame() {
+	public Player playGame(Login login) {
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		StackPane pane = new StackPane();
 		int levelNumber = 10;
 		Scene scene = new Scene(pane, 800, 800);
+		stage.setOnHidden(e -> {
+			try {
+				System.out.println("Saving player: " + player.toString());
+				login.writeObject();
+			} catch (IOException a) {
+				a.printStackTrace();
+			}
+		});
 		Label title = new Label("FACE BREAKER GAME");
 		title.setTranslateY(-300);
 		Separator separator1 = new Separator();
@@ -42,7 +53,7 @@ public class PlayGame {
 		});
 		back.setTranslateX(-330);
 		back.setTranslateY(-330);
-		for (int i = 1; i <= 40; i++) {
+		for (int i = 1; i <= levelNumber; i++) {
 			final int levelSelection = i;
 			Button level = new Button("Level " + i);
 			level.setTranslateX((-267 + (133 * ((i-1)%5))));
@@ -50,13 +61,19 @@ public class PlayGame {
 			level.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
+					int levels = player.getLevel();
+					System.out.println("Level is "+levels);
+					if (levels>=levelSelection||player.getUserName().equals("hunter")){
 					try {
+						System.out.println(levelSelection);
 						PlayLevel level = new PlayLevel(player,levelSelection);
-						player = level.playLevel(levelSelection, player);
+						player = level.playLevel(levelSelection, player,login,stage);
+						stage.close();
+						
 					} catch (NullPointerException | MatrixOutOfBoundsException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					}
+					}}
 				}
 			});
 			pane.getChildren().add(level);
@@ -64,9 +81,6 @@ public class PlayGame {
 		pane.getChildren().addAll(back,title,separator1,selectLevel);
 		stage.setScene(scene);
 		stage.show();
-		System.out.println(player);
-		player.setLevel(5);
-		System.out.println(player);
 		return player;
 	}
 }
