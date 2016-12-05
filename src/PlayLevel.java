@@ -108,16 +108,21 @@ public class PlayLevel {
 		Circle circle = new Circle(15);
 		circle.setLayoutX(400);
 		circle.setLayoutY(600);
-		//Image smiley = new Image(getClass().getResource("Emotes-face-kiss-icon.png").toExternalForm());
-		 @SuppressWarnings("deprecation")
+		try{
+			@SuppressWarnings("deprecation")
 			FacebookClient facebookClient= new DefaultFacebookClient(FBConstants.MY_ACCESS_TOKEN);
 		       
 		    User user = facebookClient.fetchObject("me", User.class,
 		    		   Parameter.with("fields", "picture,id,gender,name,birthday,email"));  
 		    String fbURL = user.getPicture().getUrl();
 		    Image fbpic = new Image (fbURL);
-		ImagePattern imagePattern = new ImagePattern(fbpic);
-		circle.setFill(imagePattern);
+		    ImagePattern imagePattern = new ImagePattern(fbpic);
+		    circle.setFill(imagePattern);
+		}catch(Exception e){
+			Image smiley = new Image(getClass().getResource("Emotes-face-kiss-icon.png").toExternalForm());
+			ImagePattern imagePattern = new ImagePattern(smiley);
+			circle.setFill(imagePattern);
+		}
 		canvas.getChildren().addAll(circle, paddle);
 		bricks = levelSelector.level(i);
 		// bricks.remove(0).removeBlock(canvas);
