@@ -52,7 +52,7 @@ public class Player implements Serializable{
 	}
 
 	public void setScore(int Score){
-		this.Score = Score;
+		this.Score += Score;
 	}
 	public String toString(){
 		return "Username: "+UserName+", Level: "+Level+", Score: "+Score;
