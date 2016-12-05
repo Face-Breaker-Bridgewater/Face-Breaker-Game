@@ -1,3 +1,6 @@
+/*hunter layman
+ * juan padilla
+ */
 import javafx.scene.paint.Color;
 import javafx.animation.Timeline;
 

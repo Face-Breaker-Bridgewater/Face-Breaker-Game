@@ -1,6 +1,6 @@
 /*
  * Hunter Layman
- * 
+ * juan padilla
  * SFX by Seth Trumbo
  */
 import javafx.animation.KeyFrame;

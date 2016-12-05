@@ -1,4 +1,6 @@
-
+/*hunter layman
+ * 
+ */
 public class Matrix_Brick {
 
 	Brick [] elements;

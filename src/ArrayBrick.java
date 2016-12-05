@@ -1,3 +1,6 @@
+/*Hunter Layman
+ * 
+ */
 import java.util.ArrayList;
 
 public class ArrayBrick extends ArrayList<Brick>{
